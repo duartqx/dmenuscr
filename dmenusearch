@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+QUERY=$(printf | dmenu -p "Search or Go: ")
+
+[[ -z "$QUERY" ]] && { exit; }
+
+qutebrowser "$QUERY"
+#surf -S https://duckduckgo.com/?q=$(echo $QUERY | sed -e 's/ /\+/g')
+#qutebrowser --qt-arg geometry 671x603+1049+345 --qt-arg name qute-float https://duckduckgo.com/?q=$(echo $QUERY | sed -e 's/ /\+/g')
+#qutebrowser https://duckduckgo.com/?q=$(echo $QUERY | sed -e 's/ /\+/g')
+#qutebrowser https://search.brave.com/search?q=$(echo $QUERY | sed -e 's/ /\+/g')
