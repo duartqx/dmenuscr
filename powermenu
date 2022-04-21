@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 # Dmenu script to shutdown or reboot the computer using logind's loginctl
 
-#choice=$(echo -e "Suspend\nReboot\nPoweroff" | dmenu -i -p 'Do you want to Leave?')
 choice=$(echo -e "Poweroff\nReboot\nSuspend" | dmenu -i -p 'Do you want to Leave?')
 
 case "$choice" in
-  #Suspend) loginctl suspend & ;;
-  #Poweroff) udiskie-umount --detach /dev/sda1 ;  loginctl poweroff &  ;;
-  #Reboot) udiskie-umount --detach /dev/sda1 ; loginctl reboot & ;;
   Poweroff) loginctl poweroff &  ;;
   Reboot) loginctl reboot & ;;
   Suspend) loginctl suspend & ;;
