@@ -10,7 +10,7 @@ url=$(echo $choice | awk '{print $NF}')
 
 case "$choice" in
     *codesignal.com*|*codewars*|*adventofcode.com*)
-        setsid -f surfium "$url" >/dev/null 2>&1 ;;
+        surfium "$url" >/dev/null 2>&1 ;;
     *)
-        setsid -f qutebrowser "$url" >/dev/null 2>&1 ;;
+        qutebrowser "$url" >/dev/null 2>&1 ;;
 esac
