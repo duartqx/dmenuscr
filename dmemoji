@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 EMOJI_FILE=~/.local/share/emoji
-chosen=$(cat $EMOJI_FILE | dmenu -i -l 25 | awk '{print $1}' | tr -d '\n')
+chosen=$(cat $EMOJI_FILE | dmenu -i -l 25 | awk '{printf $1}')
 
 [[ -z "$chosen" ]] && exit
 printf "$chosen" | xclip -selection clipboard && 

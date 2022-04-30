@@ -2,15 +2,14 @@
 # Dmenu script that shows the bookmarks on my local file and opens the selected
 # on a browser
 
-#choice=$(awk 'NR>=3 {print $0}' ~/.local/share/bookmarks | tr -d \" | dmenu -i -l 30)
-choice=$(grep -v '^#' ~/.local/share/bookmarks | tr -d \" | dmenu -i -l 30)
-url=$(echo $choice | awk '{print $NF}')
+choice=$(grep -v '^#' ~/.local/share/bookmarks | tr -d \" | \
+    dmenu -i -l 30 | awk '{print $NF}')
 
 [[ -z "$choice" ]] && { exit; }
 
 case "$choice" in
     *codesignal.com*|*codewars*|*adventofcode.com*)
-        surfium "$url" >/dev/null 2>&1 ;;
+        surfium "$choice" >/dev/null 2>&1 ;;
     *)
-        qutebrowser "$url" >/dev/null 2>&1 ;;
+        qutebrowser "$choice" >/dev/null 2>&1 ;;
 esac
