@@ -8,6 +8,6 @@ choice=$(echo -e "Primary\nSecondary\nExtend\nMirror" | dmenu -i -p 'Pick a moni
 case "$choice" in
     Primary) xrandr --output $primary --auto --output $secondary --off & ;;
     Secondary) xrandr --output $secondary --auto --output $primary --off & ;;
-    Extend) xrandr --output $primary --auto --output $secondary --auto --above $primary & ;;
+    Extend) xrandr --output $primary --auto --output $secondary --auto --above $primary && feh --bg-scale ~/.wall & ;;
     Mirror) xrandr --output $primary --auto --output $secondary --auto --same-as $primary & ;;
 esac
