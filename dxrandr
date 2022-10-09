@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-primary=eDP1
-secondary=DP1
+XRANDRQ=$(xrandr -q)
+primary=$(echo "$XRANDRQ" | awk '/ primary/ {print $1}')
+secondary=$(echo "$XRANDRQ" | awk '/ connected ([[:digit:]]|\()/ {print $1}')
 
 choice=$(echo -e "Primary\nSecondary\nExtend\nMirror" | dmenu -i -p 'Pick a monitor:')
 
