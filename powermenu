@@ -4,7 +4,7 @@
 choice=$(echo -e "Poweroff\nReboot\nSuspend" | dmenu -i -p 'Do you want to Leave?')
 
 case "$choice" in
-  Poweroff) loginctl poweroff &  ;;
-  Reboot) loginctl reboot & ;;
-  Suspend) loginctl suspend & ;;
+  Poweroff) systemctl poweroff &  ;;
+  Reboot) systemctl reboot & ;;
+  Suspend) systemctl suspend & ;;
 esac
