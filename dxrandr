@@ -4,11 +4,27 @@ XRANDRQ="$(xrandr -q)"
 primary=$(echo "$XRANDRQ" | awk '/ primary/ {print $1}')
 secondary=$(echo "$XRANDRQ" | awk '/ connected ([[:digit:]]|\()/ {print $1}')
 
-choice=$(echo -e "Primary\nSecondary\nExtend\nMirror" | dmenu -i -p 'Pick a monitor:')
+choice=$(
+    echo -e "Primary\nSecondary\nExtend\nMirror" |
+        dmenu -i -p 'Pick a monitor:'
+)
 
 case "$choice" in
-    Primary) xrandr --output "$primary" --auto --output "$secondary" --off & ;;
-    Secondary) xrandr --output "$secondary" --auto --output "$primary" --off & ;;
-    Extend) xrandr --output "$primary" --auto --output "$secondary" --auto --above "$primary" && feh --bg-scale ~/.wall & ;;
-    Mirror) xrandr --output "$primary" --auto --output "$secondary" --auto --same-as "$primary" & ;;
+
+Primary)
+    xrandr --output "$primary" --auto --output "$secondary" --off
+    ;;
+Secondary)
+    xrandr --output "$secondary" --auto --output "$primary" --off
+    ;;
+Extend)
+    xrandr --output "$primary" --auto --output "$secondary" --auto --above "$primary"
+    feh --bg-scale ~/.wall
+    ;;
+Mirror)
+    xrandr --output "$primary" --auto --output "$secondary" --auto --same-as "$primary"
+    ;;
+
 esac
+
+[[ -n $choice ]] && xset r rate 240 60

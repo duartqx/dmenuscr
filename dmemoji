@@ -4,5 +4,6 @@ EMOJI_FILE=~/.local/share/emoji
 chosen=$(cat $EMOJI_FILE | dmenu -i -l 25 | awk '{printf $1}')
 
 [[ -z "$chosen" ]] && exit
-printf "$chosen" | xclip -selection clipboard && 
-notify-send "'$chosen' copied to clipboard."
+printf "%s" "$chosen" |
+    xclip -selection clipboard &&
+    notify-send "'$chosen' copied to clipboard."

@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
 # Dmenu script to shutdown or reboot the computer using logind's loginctl
 
-choice=$(echo -e "Poweroff\nReboot\nSuspend" | dmenu -i -p 'Do you want to Leave?')
+choice=$(
+  echo -e "Poweroff\nReboot\nSuspend" |
+    dmenu -i -p 'Do you want to Leave?'
+)
 
 case "$choice" in
-  Poweroff) systemctl poweroff &  ;;
-  Reboot) systemctl reboot & ;;
-  Suspend) systemctl suspend & ;;
+
+Poweroff)
+  systemctl poweroff &
+  ;;
+Reboot)
+  systemctl reboot &
+  ;;
+Suspend)
+  systemctl suspend &
+  ;;
+
 esac
