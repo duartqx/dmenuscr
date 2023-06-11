@@ -18,7 +18,7 @@ Secondary)
     xrandr --output "$secondary" --auto --output "$primary" --off
     ;;
 Extend)
-    xrandr --output "$primary" --auto --output "$secondary" --auto --above "$primary"
+    xrandr --output "$primary" --auto --output "$secondary" --auto --right-of "$primary"
     feh --bg-scale ~/.wall
     ;;
 Mirror)
