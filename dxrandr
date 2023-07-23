@@ -5,7 +5,7 @@ primary=$(echo "$XRANDRQ" | awk '/ primary/ {print $1}')
 secondary=$(echo "$XRANDRQ" | awk '/ connected ([[:digit:]]|\()/ {print $1}')
 
 choice=$(
-    echo -e "Primary\nSecondary\nExtend\nMirror" |
+    echo -e "Primary\nSecondary\nExtend\nExtend-Bellow\nMirror" |
         dmenu -i -p 'Pick a monitor:'
 )
 
@@ -19,6 +19,10 @@ Secondary)
     ;;
 Extend)
     xrandr --output "$primary" --auto --output "$secondary" --auto --right-of "$primary"
+    feh --bg-scale ~/.wall
+    ;;
+Extend-Bellow)
+    xrandr --output "$primary" --auto --output "$secondary" --auto --above "$primary"
     feh --bg-scale ~/.wall
     ;;
 Mirror)
