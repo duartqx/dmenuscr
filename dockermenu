@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+menu() {
+    docker container ls -f $1 --format '{{.Names}}' | dmenu -i -l 20
+}
+
+call() {
+    FILTRO=$([[ $1 == start ]] && echo 'status=exited' || echo 'status=running')
+
+    CHOICE=$(menu $FILTRO)
+
+    [[ -z $CHOICE ]] && exit
+
+    docker container $1 $CHOICE
+}
+
+main() {
+    case $(echo -e 'Start\nStop\nStop All' | dmenu -i) in
+        Start)
+            call start && main ;;
+        Stop)
+            call stop && main ;;
+        Stop\ All)
+            docker container stop $(docker ps -q) ;;
+    esac
+}
+
+main
